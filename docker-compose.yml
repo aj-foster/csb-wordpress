@@ -24,6 +24,7 @@ services:
       - 8080:80
     restart: always
     volumes:
+      - wp_data:/var/www/html
       - ./myTheme:/var/www/html/wp-content/themes/myTheme
     environment:
       WORDPRESS_DB_HOST: db
@@ -35,3 +36,4 @@ services:
         define('WP_HOME', 'https://${HOSTNAME}-8080.preview.csb.app');
 volumes:
   db_data:
+  wp_data:
