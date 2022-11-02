@@ -21,12 +21,17 @@ services:
   wordpress:
     image: wordpress:latest
     ports:
-      - 80:80
+      - 8080:80
     restart: always
+    volumes:
+      - ./myTheme:/var/www/html/wp-content/themes/myTheme
     environment:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wordpress
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_SITEURL', 'https://${HOSTNAME}-8080.preview.csb.app');
+        define('WP_HOME', 'https://${HOSTNAME}-8080.preview.csb.app');
 volumes:
   db_data:

@@ -3,7 +3,10 @@
     "start": {
       "name": "Start WordPress",
       "command": "docker-compose up",
-      "runAtStart": true
+      "runAtStart": true,
+      "restartOn": {
+        "branch": true
+      }
     }
   }
 }
